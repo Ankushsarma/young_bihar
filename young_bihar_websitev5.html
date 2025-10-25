@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Young Bihar - Empowering Bihar's Youth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --light-mint: #DDF4E7;
+      --fresh-green: #67C090;
+      --teal-blue: #26667F;
+      --deep-navy: #124170;
+      --white: #FFFFFF;
+      --text-dark: #2C3E50;
+      --text-gray: #6B7280;
+      --cream: #F5FFF9;
+      --soft-teal: #E8F8F1;
+      --pale-mint: #D3EDE2;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-dark);
+      background: linear-gradient(135deg, var(--cream), var(--soft-teal), var(--pale-mint));
+      background-attachment: fixed;
+      line-height: 1.6;
+      overflow-x: hidden;
+      animation: fadeIn .8s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1
+      }
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, .95);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--teal-blue), var(--fresh-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal-blue), var(--fresh-green));
+      transition: width .3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--teal-blue);
+    }
+
+    .hero {
+      margin-top: 80px;
+      padding: 120px 2rem;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, rgba(38, 102, 127, 0), rgba(103, 192, 144, .9)), url(1000132992.jpg) center/cover;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: 1rem 2.5rem;
+      background: var(--fresh-green);
+      color: white;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all .3s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      background: var(--teal-blue);
+    }
+
+    section {
+      padding: 80px 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.4rem;
+      color: var(--teal-blue);
+    }
+
+    .section-header p {
+      color: var(--text-gray);
+    }
+
+    /* About */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-text h3 {
+      color: var(--fresh-green);
+      margin-bottom: 1rem;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+    }
+
+    /* Posts */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .post-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, .1);
+    }
+
+    .post-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .post-content {
+      padding: 1rem;
+    }
+
+    .post-content h3 {
+      color: var(--teal-blue);
+    }
+
+    .post-stats {
+      padding: 1rem;
+      display: flex;
+      justify-content: space-around;
+      color: var(--text-gray);
+      font-size: .9rem;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 1/1;
+      background: var(--light-mint);
+      transition: transform .3s;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-6px);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .3s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(38, 102, 127, .6);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay i {
+      font-size: 2rem;
+      color: white;
+    }
+
+    /* Events */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .event-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, .1);
+      overflow: hidden;
+    }
+
+    .event-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .event-content {
+      padding: 1.2rem;
+    }
+
+    .event-content h3 {
+      color: var(--teal-blue);
+    }
+
+    /* Contact */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      color: var(--teal-blue);
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      color: var(--text-gray);
+      margin-bottom: 1rem;
+    }
+
+    .contact-details p {
+      color: var(--text-dark);
+      margin: .4rem 0;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid var(--light-mint);
+      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      resize: none;
+      transition: border-color .3s, box-shadow .3s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--fresh-green);
+      box-shadow: 0 0 0 4px rgba(103, 192, 144, .1);
+    }
+
+    .submit-button {
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--teal-blue), var(--fresh-green));
+      border: none;
+      color: white;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .3s;
+    }
+
+    .submit-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-link {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .social-link.facebook {
+      background: #1877F2;
+    }
+
+    .social-link.instagram {
+      background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF);
+    }
+
+    .social-link.twitter {
+      background: #1DA1F2;
+    }
+
+    footer {
+      background: var(--deep-navy);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal-blue), var(--fresh-green));
+      border: none;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: all .3s;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    @media(max-width:768px) {
+
+      .about-content,
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 2rem;
+        transition: left .3s;
+      }
+
+      .nav-links.active {
+        left: 0;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+    }
+
+    /* Author Section */
+    .author-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 3rem;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      padding: 3rem 2rem;
+    }
+
+    .author-image img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      transition: transform 0.4s ease;
+    }
+
+    .author-image img:hover {
+      transform: scale(1.05);
+    }
+
+    .author-info h3 {
+      color: var(--teal-blue);
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .author-info h4 {
+      color: var(--fresh-green);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .author-info p {
+      color: var(--text-gray);
+      margin-bottom: 1rem;
+      text-align: justify;
+    }
+
+    .author-socials {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .author-socials a {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, var(--teal-blue), var(--fresh-green));
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .author-socials a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .author-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .author-image img {
+        width: 80%;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Young Bihar</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#posts">Posts</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></div>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <h1>Young Bihar</h1>
+    <p>Empowering Bihar's Youth</p>
+    <a href="https://facebook.com/youngbiharnow" class="cta-button" target="_blank">
+      <i class="fab fa-facebook"></i> Follow Us
+    </a>
+  </section>
+
+  <section id="about">
+    <div class="section-header">
+      <h2>About Young Bihar</h2>
+      <p>Celebrating culture, empowering youth, driving development</p>
+    </div>
+    <div class="about-content">
+      <div class="about-text">
+        <h3>Our Mission</h3>
+        <p>
+
+
+          Young Bihar (Political Party) एक प्रयास है। जिसके द्वारा हम बिहार में बदलाव लाना चाहते है। अगर हम बात करे
+          रोजगार की, तो हम सब
+          जानते है कि बिहार में क्या हालात है, सब लोग सरकारी नौकरी पर निर्भर है क्योंकि बिहार के युवाओं के पास सरकारी
+          नौकरी के अलावा कोई विकल्प नहीं है।
+        </p>
+        <p>
+          अगर वो कुछ करना भी चाहते है तो उन्हें बिहार के बाहर जाना पड़ता है अपने मातृभूमि और अपनो को छोड़कर। इसलिए
+          रोजगार के क्षेत्र में हमारा प्रयास होगा कि
+          बिहार में ही औद्योगिक कंपनियों को लाया जाए और यही बिहार के युवाओं को रोजगार दी जाए ताकि उन्हें अपना घर छोड़कर
+          बाहर ना जाना पड़े। इस तरह बिहार के
+          लोगों को दुसरे राज्यों पर निर्भर नहीं होना पड़ेगा।
+        </p>
+        <p>
+          आइए बात करते है कृषि के बारे में। हम सभी जानते हैं कि अपना बिहार कृषि प्रधान राज्य है। फिर भी यहां के किसानों
+          की हालत दयनीय है। इसके भी बहुत सारे कारण है
+          उन में से एक कारण है बाढ़। बाढ़ बिहार के जटिल समस्याओं में से एक है। हर साल बाढ़ की वजह से लाखों जान और माल की
+          हानि होती है और सबसे बड़ा नुकसान फसलों
+          का होता है। फिर भी ना तो राज्य सरकार और ना ही केंद्र सरकार बाढ़ के रोकथाम के लिए कुछ करती है। हमारा प्रयास
+          होगा कि बिहार में बाढ़ की समस्या का निदान सम्पूर्ण तरीके
+          से किया जाए ताकि फसलों को नुकसान ना हो और किसानों का जीवन सरल हो सके। इसके बाद भी किसानों को कोई खास लाभ नहीं
+          होगा क्योंकि फसलों की बिक्री के लिए कोई सुलभ माध्यम नहीं है।
+          हमारा उद्देश्य होगा कि बिहार में खाद्य उघोगो की फैक्ट्रियां स्थापित की जाए जिससे किसानों को फसलों को उचित
+          मूल्य पर बेचने के लिए दुसरो पर निर्भर ना होना पड़े और बिहार के युवाओं को बिहार में ही रोजगार मिल जाए।
+          अभी आप <strong>Young Bihar</strong> से जुड़ चुके है तो समय-समय पर हम आपको हमारे उद्देश्यों से
+          अवगत कराते रहेंगे
+
+        </p>
+      </div>
+      <div class="about-image">
+        <img src=1000132993.jpg alt="Nalanda University Ruins">
+      </div>
+    </div>
+  </section>
+
+  <section id="posts">
+    <div class="section-header">
+      <h2>Recent Posts</h2>
+      <p>Latest stories from Bihar’s youth</p>
+    </div>
+    <div class="posts-grid">
+      <div class="post-card">
+        <img src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=400&h=300&fit=crop"
+          alt="Patna Riverfront">
+        <div class="post-content">
+          <h3>Innovation in Patna</h3>
+          <p>How Bihar’s startups are transforming the local economy through digital empowerment.</p>
+        </div>
+        <div class="post-stats">
+          <span><i class="fas fa-heart"></i> 120</span>
+          <span><i class="fas fa-comment"></i> 25</span>
+          <span><i class="fas fa-share"></i> 10</span>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=400&h=300&fit=crop"
+          alt="Festival Celebration">
+        <div class="post-content">
+          <h3>Chhath Festival 2025</h3>
+          <p>A photo story capturing the spirituality and colors of Bihar’s most vibrant festival.</p>
+        </div>
+        <div class="post-stats">
+          <span><i class="fas fa-heart"></i> 230</span>
+          <span><i class="fas fa-comment"></i> 40</span>
+          <span><i class="fas fa-share"></i> 19</span>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&h=300&fit=crop"
+          alt="Youth Initiative">
+        <div class="post-content">
+          <h3>Youth Changemakers</h3>
+          <p>Meet the new generation leading education and sustainability drives in Bihar’s districts.</p>
+        </div>
+        <div class="post-stats">
+          <span><i class="fas fa-heart"></i> 175</span>
+          <span><i class="fas fa-comment"></i> 31</span>
+          <span><i class="fas fa-share"></i> 15</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="section-header">
+      <h2>Photo Gallery</h2>
+      <p>Capturing Bihar’s culture and beauty</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img
+          src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=400&h=400&fit=crop" alt="Temple">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item"><img
+          src="https://images.unsplash.com/photo-1545128485-c400e7702796?w=400&h=400&fit=crop" alt="Youth">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item"><img
+          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop" alt="Landscape">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item"><img
+          src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=400&h=400&fit=crop" alt="Tradition">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="events">
+    <div class="section-header">
+      <h2>Events & Highlights</h2>
+      <p>Celebrating Bihar’s spirit through community and innovation</p>
+    </div>
+    <div class="events-grid">
+      <div class="event-card">
+        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=400&h=300&fit=crop" alt="Tech Fest">
+        <div class="event-content">
+          <h3>Bihar Tech Summit</h3>
+          <p>Young innovators showcased AI, IoT, and green tech for rural development.</p>
+        </div>
+      </div>
+      <div class="event-card">
+        <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=300&fit=crop"
+          alt="Cultural Event">
+        <div class="event-content">
+          <h3>Bihar Diwas Celebration</h3>
+          <p>A fusion of heritage, dance, and art celebrated across the state with pride.</p>
+        </div>
+      </div>
+      <div class="event-card">
+        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=400&h=300&fit=crop" alt="Education Drive">
+        <div class="event-content">
+          <h3>Rural Education Drive</h3>
+          <p>Volunteers reached remote villages to distribute books and digital learning kits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-header">
+      <h2>Contact Us</h2>
+      <p>We’d love to hear from you — get in touch for collaborations or ideas!</p>
+    </div>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Get in Touch</h3>
+        <p>Join hands with Young Bihar to make a difference in culture, technology, and education.</p>
+        <div class="social-links">
+          <a href="https://facebook.com/youngbiharnow" class="social-link facebook" target="_blank"><i
+              class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/youngbihar" class="social-link instagram" target="_blank"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://twitter.com/youngbihar" class="social-link twitter" target="_blank"><i
+              class="fab fa-twitter"></i></a>
+        </div>
+        <div class="contact-details">
+          <p><i class="fas fa-envelope"></i> youngbihar2022@gmail.com</p>
+          <p><i class="fas fa-phone"></i> +91 9172177664</p>
+          <p><i class="fas fa-map-marker-alt"></i> Arrah, Bihar, India</p>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="return handleSubmit(event)">
+        <input type="text" id="name" name="name" required placeholder="Your Name">
+        <input type="email" id="email" name="email" required placeholder="Your Email">
+        <textarea id="message" name="message" rows="5" required placeholder="Your Message"></textarea>
+        <button type="submit" class="submit-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+
+  <section id="author">
+    <div class="section-header">
+      <h2>About the Author</h2>
+      <p>The visionary mind behind Young Bihar</p>
+    </div>
+
+    <div class="author-container">
+      <div class="author-image">
+        <img src=1000132495.jpg alt="Author - Ankush Kumar">
+      </div>
+      <div class="author-info">
+        <h3>Rahul Kumar</h3>
+        <h4>Author of Young Bihar</h4>
+        <p>
+          राहुल कुमार D2D Youth Story के दूरदर्शी संस्थापक हैं, जो बिहार की प्रामाणिक कहानी को दुनिया के सामने लाने के
+          लिए समर्पित एक जीवंत डिजिटल आंदोलन है। उनका मुख्य लक्ष्य एक सकारात्मक और वास्तविक संदेश देना, तथा बिहार के
+          समृद्ध इतिहास और जीवंत संस्कृति के प्रति वैश्विक सराहना को प्रेरित करना है। युवा बिहारी पीढ़ी की आवाज बनने की
+          लगन से प्रेरित होकर, वह लचीलेपन (resilience), नवाचार (innovation), और विरासत (heritage) की स्थानीय कहानियों को
+          उजागर करने पर ध्यान केंद्रित करते हैं। उनके नेतृत्व में, D2D Youth Story उन लोगों के लिए एक शक्तिशाली स्रोत बन
+          गया है जो बिहार की क्षमता में विश्वास करते हैं, और यह राज्य के हृदय को वैश्विक दर्शकों से जोड़ने वाला एक
+          महत्वपूर्ण पुल (bridge) का काम कर रहा है।
+        </p>
+
+        <div class="author-socials">
+          <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer>
+    <p>&copy; 2025 Young Bihar. All rights reserved. Made with ❤️ for Bihar.</p>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navLinks = document.getElementById('navLinks');
+    const scrollTopBtn = document.getElementById('scrollTop');
+
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      mobileMenu.querySelector('i').classList.toggle('fa-bars');
+      mobileMenu.querySelector('i').classList.toggle('fa-times');
+    });
+
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      alert(`Thank you ${name}! We'll reach you at ${email} soon.`);
+      e.target.reset();
+    }
+  </script>
+</body>
+
+</html>
